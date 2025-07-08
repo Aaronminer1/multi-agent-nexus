@@ -9,16 +9,21 @@ This project implements an append-only logging and snapshot infrastructure for m
 - Automatic snapshot generation of recent interactions
 - Archiving of older interactions
 - Error handling and resilience measures
+- Automated monitoring of event log changes
+- CLI agent integration for Gemini and other AI agents
 
 ## Directory Structure
 ```
 ├── scripts/
-│   ├── log_event.sh       # Helper for logging events
-│   └── generate_snapshot.sh  # Generates communication.md and archive.md
-├── events.log             # Append-only event log
-├── communication.md       # Recent interactions (last K)
-├── archive.md             # Archived older interactions
-└── README.md              # This file
+│   ├── log_event.sh         # Helper for logging events
+│   ├── generate_snapshot.sh # Generates communication.md and archive.md
+│   ├── watch_events.sh      # Automated watcher for event log changes
+│   └── gemini_agent.sh      # Integration script for Gemini CLI agents
+├── events.log               # Append-only event log
+├── communication.md         # Recent interactions (last K)
+├── archive.md               # Archived older interactions
+├── architecture.svg         # System architecture diagram
+└── README.md                # This file
 ```
 
 ## Usage
@@ -45,13 +50,29 @@ To generate snapshots of recent interactions and archive older ones:
 This will update `communication.md` with the most recent K interactions and move older ones to `archive.md`.
 
 ### Automated Snapshot Generation
-To automatically generate snapshots whenever events.log changes:
+You can start a watcher that automatically generates snapshots whenever the events log changes:
 
 ```bash
-while inotifywait -e close_write events.log; do
-  ./scripts/generate_snapshot.sh
-done
+./scripts/watch_events.sh
 ```
+
+This requires the `inotify-tools` package to be installed.
+
+### Gemini Agent Integration
+A helper script is provided to integrate Gemini CLI agents with the event-log system:
+
+```bash
+# Create a new interaction with a question
+./scripts/gemini_agent.sh ask "How do I start the MCP server?"
+
+# Respond to an existing interaction (using the ID returned from ask)
+./scripts/gemini_agent.sh respond 3 "You can start it with npm start"
+
+# View the current communication file
+./scripts/gemini_agent.sh show
+```
+
+This allows you to connect terminal-based Gemini CLI sessions to the event logging system.
 
 ## Error Handling
 The system includes various error handling mechanisms:
