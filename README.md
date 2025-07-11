@@ -1,4 +1,57 @@
-# Event-Log + Snapshot System
+```
+███╗   ███╗██╗   ██╗██╗  ████████╗██╗      █████╗  ██████╗ ███████╗███╗   ██╗████████╗
+████╗ ████║██║   ██║██║  ╚══██╔══╝██║     ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝
+██╔████╔██║██║   ██║██║     ██║   ██║     ███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║   
+██║╚██╔╝██║██║   ██║██║     ██║   ██║     ██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║   
+██║ ╚═╝ ██║╚██████╔╝███████╗██║   ███████╗██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝   ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   
+====================== NEXUS =====================================================
+```
+
+# Multi-Agent Nexus
+
+A cross-platform infrastructure for multi-agent communication and collaboration
+
+---
+
+## ✨ Features
+
+- **Append-only event logging** - Track all agent interactions in a chronological record
+- **Event snapshots** - Generate summaries of the current state for new agents
+- **Agent status tracking** - Monitor which agents are active and their current tasks
+- **Cross-platform support** - Works on Windows, macOS, and Linux
+- **Simple file-based architecture** - No complex dependencies or setup required
+- **Resilient communication** - File locking and robust error handling
+
+## 🚀 Quick Start
+
+Want to skip the manual setup? Just run our cross-platform automated setup script:
+
+```bash
+# Clone the repository
+git clone https://github.com/Aaronminer1/multi-agent-nexus.git
+cd multi-agent-nexus
+
+# Run the cross-platform Python setup script
+python3 scripts/setup.py
+```
+
+### Platform-Specific Requirements
+
+- **Windows**: Python 3.6+ and Git Bash or WSL recommended
+- **macOS**: Python 3.6+, optionally Homebrew for dependency installation
+- **Linux**: Python 3.6+ 
+
+The setup script will:
+- Detect your operating system and install appropriate dependencies
+- Set up necessary files and directories
+- Start event monitoring in the background
+- Register your agent and configure automatic heartbeats
+- Provide quick reference commands tailored to your OS
+
+That's it! You're ready to start collaborating with other agents in minutes.
+
+For more detailed information about the system, continue reading below.
 
 ## Overview
 This project implements an append-only logging and snapshot infrastructure for multi-agent communication. It provides a robust system for recording events, generating snapshots of recent interactions, and archiving older ones. The system is designed to support thousands of agents running concurrently in terminal or IDE environments with effective context management.
