@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .subtitle {
+      font-size: 14px;
+      font-style: italic;
+    }
+    .component {
+      fill: #e6f3ff;
+      stroke: #0066cc;
+      stroke-width: 2;
+    }
+    .storage {
+      fill: #f9e79f;
+      stroke: #d35400;
+      stroke-width: 2;
+    }
+    .process {
+      fill: #d5f5e3;
+      stroke: #27ae60;
+      stroke-width: 2;
+    }
+    .agent {
+      fill: #ebdef0;
+      stroke: #8e44ad;
+      stroke-width: 2;
+    }
+    .arrow {
+      stroke: #555;
+      stroke-width: 2;
+      marker-end: url(#arrowhead);
+    }
+    .dashed {
+      stroke-dasharray: 5,5;
+    }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="30" class="title" text-anchor="middle">Event-Log + Snapshot System Architecture</text>
+  <text x="400" y="50" class="subtitle" text-anchor="middle">Multi-Agent Communication Infrastructure</text>
+  
+  <!-- Components -->
+  <!-- Agents -->
+  <rect x="50" y="100" width="120" height="60" rx="10" ry="10" class="agent" />
+  <text x="110" y="135" text-anchor="middle">Agent A</text>
+  
+  <rect x="50" y="300" width="120" height="60" rx="10" ry="10" class="agent" />
+  <text x="110" y="335" text-anchor="middle">Agent B</text>
+  
+  <!-- Scripts -->
+  <rect x="250" y="100" width="120" height="60" rx="5" ry="5" class="process" />
+  <text x="310" y="135" text-anchor="middle">log_event.sh</text>
+  
+  <rect x="250" y="300" width="120" height="60" rx="5" ry="5" class="process" />
+  <text x="310" y="335" text-anchor="middle">generate_snapshot.sh</text>
+  
+  <rect x="250" y="200" width="120" height="60" rx="5" ry="5" class="process" />
+  <text x="310" y="235" text-anchor="middle">watch_events.sh</text>
+  
+  <!-- Storage -->
+  <rect x="450" y="100" width="120" height="60" rx="0" ry="0" class="storage" />
+  <text x="510" y="135" text-anchor="middle">events.log</text>
+  
+  <rect x="450" y="200" width="120" height="60" rx="0" ry="0" class="storage" />
+  <text x="510" y="235" text-anchor="middle">communication.md</text>
+  
+  <rect x="450" y="300" width="120" height="60" rx="0" ry="0" class="storage" />
+  <text x="510" y="335" text-anchor="middle">archive.md</text>
+  
+  <!-- Error Handling -->
+  <rect x="650" y="100" width="120" height="60" rx="5" ry="5" class="process" />
+  <text x="710" y="135" text-anchor="middle">Error Handling</text>
+  
+  <rect x="650" y="200" width="120" height="60" rx="0" ry="0" class="storage" />
+  <text x="710" y="235" text-anchor="middle">events.offline.log</text>
+  
+  <!-- Connections -->
+  <!-- Agent A to log_event.sh -->
+  <path d="M170,130 L250,130" class="arrow" />
+  <!-- Agent B to log_event.sh -->
+  <path d="M170,330 C210,330 210,130 250,130" class="arrow" />
+  
+  <!-- log_event.sh to events.log -->
+  <path d="M370,130 L450,130" class="arrow" />
+  
+  <!-- events.log to Error Handling -->
+  <path d="M570,130 L650,130" class="arrow" />
+  
+  <!-- Error Handling to offline.log -->
+  <path d="M710,160 L710,200" class="arrow" />
+  
+  <!-- watch_events.sh to events.log -->
+  <path d="M310,200 L310,160 L450,130" class="arrow dashed" />
+  
+  <!-- watch_events.sh to generate_snapshot.sh -->
+  <path d="M310,260 L310,300" class="arrow" />
+  
+  <!-- events.log to generate_snapshot.sh -->
+  <path d="M510,160 L510,230 L370,300" class="arrow" />
+  
+  <!-- generate_snapshot.sh to communication.md -->
+  <path d="M370,300 L410,300 L410,230 L450,230" class="arrow" />
+  
+  <!-- generate_snapshot.sh to archive.md -->
+  <path d="M370,330 L450,330" class="arrow" />
+  
+  <!-- Legend -->
+  <rect x="50" y="400" width="20" height="20" class="agent" />
+  <text x="75" y="415">Agent</text>
+  
+  <rect x="150" y="400" width="20" height="20" class="process" />
+  <text x="175" y="415">Process/Script</text>
+  
+  <rect x="300" y="400" width="20" height="20" class="storage" />
+  <text x="325" y="415">Storage/File</text>
+  
+  <line x1="450" y1="410" x2="500" y2="410" class="arrow" />
+  <text x="525" y="415">Data Flow</text>
+  
+  <line x1="600" y1="410" x2="650" y2="410" class="arrow dashed" />
+  <text x="675" y="415">Monitoring</text>
+</svg>
